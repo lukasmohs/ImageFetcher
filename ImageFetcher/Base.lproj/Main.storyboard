@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,38 +23,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hBY-yq-z3E">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Fetch Image" id="dK9-ei-Wew"/>
+                                </items>
+                            </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m7i-OQ-ggf">
-                                <rect key="frame" x="0.0" y="34" width="375" height="0.0"/>
+                                <rect key="frame" x="0.0" y="64" width="96" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MET-Wc-yUs">
-                                <rect key="frame" x="172" y="91" width="0.0" height="10"/>
+                                <rect key="frame" x="311" y="64" width="48" height="30"/>
                                 <state key="normal" title="Search"/>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r50-Kg-3aq">
-                                <rect key="frame" x="0.0" y="78" width="240" height="128"/>
+                                <rect key="frame" x="16" y="102" width="343" height="565"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="MET-Wc-yUs" secondAttribute="trailing" id="0gZ-HL-PUY"/>
-                            <constraint firstItem="MET-Wc-yUs" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="1PO-dd-zYz"/>
-                            <constraint firstItem="m7i-OQ-ggf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="5wP-iL-CB6"/>
-                            <constraint firstAttribute="trailing" secondItem="m7i-OQ-ggf" secondAttribute="trailing" id="7xH-eD-6W7"/>
-                            <constraint firstItem="r50-Kg-3aq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="CAt-wj-XAq"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="r50-Kg-3aq" secondAttribute="bottom" id="CO7-wS-pdN"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="r50-Kg-3aq" secondAttribute="trailing" id="LCY-wY-Jff"/>
-                            <constraint firstItem="m7i-OQ-ggf" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="jNm-tC-bb0"/>
-                            <constraint firstItem="r50-Kg-3aq" firstAttribute="top" secondItem="m7i-OQ-ggf" secondAttribute="bottom" id="pkd-XN-3zd"/>
-                            <constraint firstItem="MET-Wc-yUs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="tkK-dx-I0K"/>
+                            <constraint firstItem="hBY-yq-z3E" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="3yP-za-vIk"/>
+                            <constraint firstItem="r50-Kg-3aq" firstAttribute="top" secondItem="MET-Wc-yUs" secondAttribute="bottom" constant="8" id="5Rh-aF-CLG"/>
+                            <constraint firstItem="MET-Wc-yUs" firstAttribute="width" secondItem="m7i-OQ-ggf" secondAttribute="width" multiplier="0.5" id="7eg-8V-pb5"/>
+                            <constraint firstItem="MET-Wc-yUs" firstAttribute="top" secondItem="hBY-yq-z3E" secondAttribute="bottom" id="JWZ-Dq-7n1"/>
+                            <constraint firstItem="m7i-OQ-ggf" firstAttribute="top" secondItem="hBY-yq-z3E" secondAttribute="bottom" id="Lwj-a8-gld"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="r50-Kg-3aq" secondAttribute="bottom" id="RLH-vN-BSM"/>
+                            <constraint firstItem="MET-Wc-yUs" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="VHW-KV-uCQ"/>
+                            <constraint firstItem="r50-Kg-3aq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="c97-GJ-3ok"/>
+                            <constraint firstItem="hBY-yq-z3E" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="dQU-Ds-OS7"/>
+                            <constraint firstItem="m7i-OQ-ggf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="gkB-cl-Ppl"/>
+                            <constraint firstItem="r50-Kg-3aq" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="udn-6U-6kW"/>
+                            <constraint firstAttribute="trailing" secondItem="hBY-yq-z3E" secondAttribute="trailing" id="wbK-et-uX1"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="138.98050974512745"/>
+            <point key="canvasLocation" x="112.8" y="151.57421289355324"/>
         </scene>
     </scenes>
 </document>
