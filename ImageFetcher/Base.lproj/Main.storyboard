@@ -38,6 +38,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MET-Wc-yUs">
                                 <rect key="frame" x="311" y="64" width="48" height="30"/>
                                 <state key="normal" title="Search"/>
+                                <connections>
+                                    <action selector="searchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P5i-v0-TMk"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r50-Kg-3aq">
                                 <rect key="frame" x="16" y="102" width="343" height="565"/>
@@ -59,6 +62,11 @@
                             <constraint firstAttribute="trailing" secondItem="hBY-yq-z3E" secondAttribute="trailing" id="wbK-et-uX1"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="r50-Kg-3aq" id="dg2-qo-g8Q"/>
+                        <outlet property="inputTextField" destination="m7i-OQ-ggf" id="c8S-SF-zrF"/>
+                        <outlet property="searchButton" destination="MET-Wc-yUs" id="giZ-yg-mH0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
