@@ -59,8 +59,8 @@ class ViewController: UIViewController {
                             //print(urlContent)
                             ////image.flaticon.com/icons/png/128/272/272186.png
                             let matched = self.matches(for:"(?<=https:\\/\\/image.flaticon.com\\/icons\\/png\\/)[^png]+", in: urlContent)
-                            print(matched[0].count);
-                            if matched[0].count < 40{
+                            if matched.count > 0 && matched[0].count < 40{
+                                print(matched[0].count);
                                 let imageURL = "https://image.flaticon.com/icons/png/" + matched[0] + "png"
                                 print(imageURL)
                                 self.getAndShowImage(url: imageURL);
@@ -103,7 +103,7 @@ class ViewController: UIViewController {
                             //print(urlContent)
                             let matched = self.matches(for:"(?<=\\/\\/c1.staticflickr.com)[^'\\)]+", in: urlContent)
                             print(matched[0].count);
-                            if matched[0].count < 40{
+                            if matched.count > 0 && matched[0].count < 40{
                                 let imageURL = "http://c1.staticflickr.com" + matched[0]
                                 print(imageURL)
                                 self.getAndShowImage(url: imageURL);
