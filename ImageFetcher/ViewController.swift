@@ -30,39 +30,48 @@ class ViewController: UIViewController {
     }
 
     @IBAction func searchButtonPressed(_ sender: Any) {
-        
-        //self.showWaitingOverlay();
-        var searchFlickrURL = "";
+        self.view.endEditing(true)
+        //self.showWaitingOverlay()
+        var searchFlickrURL = ""
         if let keyWord = inputTextField.text {
-             searchFlickrURL = "https://www.flickr.com/search/?text=" + keyWord + "&license=2%2C3%2C4%2C5%2C6%2C9";
+             searchFlickrURL = "https://www.flickr.com/search/?text=" + keyWord.trimmingCharacters(in: .whitespacesAndNewlines) + "&license=2%2C3%2C4%2C5%2C6%2C9"
         } else {
-            return;
+            return
         }
         
         let url = NSURL(string: searchFlickrURL)
         
         if url != nil {
             let task = URLSession.shared.dataTask(with: url! as URL, completionHandler: { (data, response, error) -> Void in
-                print(data!)
-                
-                if error == nil {
-                    if let urlContent = NSString(data: data!, encoding: String.Encoding.ascii.rawValue) as String? {
-                        //print(urlContent)
-                        let matched = self.matches(for:"(?<=\\/\\/c1.staticflickr.com)[^'\\)]+", in: urlContent)
-                        let imageURL = "http://c1.staticflickr.com" + matched[0]
-                        print(imageURL)
-
-                        self.getAndShowImage(url: imageURL);
-                    } else{
-                        print("Broken page content")
+                if data != nil {
+                    if error == nil {
+                        if let urlContent = NSString(data: data!, encoding: String.Encoding.ascii.rawValue) as String? {
+                            //print(urlContent)
+                            let matched = self.matches(for:"(?<=\\/\\/c1.staticflickr.com)[^'\\)]+", in: urlContent)
+                            print(matched[0].count);
+                            if matched[0].count < 40{
+                                let imageURL = "http://c1.staticflickr.com" + matched[0]
+                                print(imageURL)
+                                self.getAndShowImage(url: imageURL);
+                            } else{
+                                self.showErrorMessage(text: "No image found")
+                                print("No image found")
+                            }
+                        } else{
+                            self.showErrorMessage(text: "Broken page content")
+                            print("Broken page content")
+                        }
                     }
-                    
-                    
+                }else{
+                    self.showErrorMessage(text: "Data fetching issue")
+                    print("Data fetching issue")
                 }
             })
             task.resume()
+        } else{
+            self.showErrorMessage(text: "Invalid Keyword")
+            print("Invalid Keyword")
         }
-        
     }
     
     // from: https://stackoverflow.com/questions/27960556/loading-an-overlay-when-running-long-tasks-in-ios
@@ -105,30 +114,41 @@ class ViewController: UIViewController {
 
             if let e = error {
                 print("Error downloading picture: \(e)")
+                self.showErrorMessage(text: "Error downloading picture")
             } else {
                 // No errors found.
                 // It would be weird if we didn't have a response, so check for that too.
                 if let res = response as? HTTPURLResponse {
                     print("Downloaded  picture with response code \(res.statusCode)")
                     if let imageData = data {
-                        // Finally convert that Data into an image and do what you wish with it.
-                        let image = UIImage(data: imageData)
+                        // Finally convert that Data into an image and update on main thread
+                        let picture = UIImage(data: imageData)
                         
-                        self.imageView.image = image;
-                        
-                        //sleep(5);
-                        self.dismiss(animated: false, completion: nil)
-                        
+                        DispatchQueue.main.async {
+                            self.setImage(image: picture!);
+                        }
                     } else {
+                        self.showErrorMessage(text: "Couldn't get image: Image is nil")
                         print("Couldn't get image: Image is nil")
                     }
                 } else {
+                    self.showErrorMessage(text: "Couldn't get response code for some reason")
                     print("Couldn't get response code for some reason")
                 }
             }
                     }
         
         downloadPicTask.resume()
+    }
+    
+    func setImage(image :UIImage) {
+        self.imageView.image = image
+    }
+    
+    func showErrorMessage(text: String){
+        let alert = UIAlertController(title: "Alert", message: text, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 
 }
