@@ -30,6 +30,8 @@ class ViewController: UIViewController {
     }
 
     @IBAction func searchButtonPressed(_ sender: Any) {
+        
+        //self.showWaitingOverlay();
         var searchFlickrURL = "";
         if let keyWord = inputTextField.text {
              searchFlickrURL = "https://www.flickr.com/search/?text=" + keyWord + "&license=2%2C3%2C4%2C5%2C6%2C9";
@@ -63,6 +65,20 @@ class ViewController: UIViewController {
         
     }
     
+    // from: https://stackoverflow.com/questions/27960556/loading-an-overlay-when-running-long-tasks-in-ios
+    
+    func showWaitingOverlay(){
+        let alert = UIAlertController(title: nil, message: "Please wait...", preferredStyle: .alert)
+        
+        let loadingIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        loadingIndicator.startAnimating();
+        
+        alert.view.addSubview(loadingIndicator)
+        present(alert, animated: true, completion: nil)
+    }
+    
     
     // from: https://stackoverflow.com/questions/27880650/swift-extract-regex-matches
     func matches(for regex: String, in text: String) -> [String] {
@@ -86,19 +102,23 @@ class ViewController: UIViewController {
         
         let downloadPicTask = session.dataTask(with: catPictureURL) { (data, response, error) in
             // The download has finished.
+
             if let e = error {
-                print("Error downloading cat picture: \(e)")
+                print("Error downloading picture: \(e)")
             } else {
                 // No errors found.
                 // It would be weird if we didn't have a response, so check for that too.
                 if let res = response as? HTTPURLResponse {
-                    print("Downloaded cat picture with response code \(res.statusCode)")
+                    print("Downloaded  picture with response code \(res.statusCode)")
                     if let imageData = data {
                         // Finally convert that Data into an image and do what you wish with it.
                         let image = UIImage(data: imageData)
                         
                         self.imageView.image = image;
-                        // Do something with your image.
+                        
+                        //sleep(5);
+                        self.dismiss(animated: false, completion: nil)
+                        
                     } else {
                         print("Couldn't get image: Image is nil")
                     }
@@ -106,7 +126,7 @@ class ViewController: UIViewController {
                     print("Couldn't get response code for some reason")
                 }
             }
-        }
+                    }
         
         downloadPicTask.resume()
     }
