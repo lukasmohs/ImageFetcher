@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     
     @IBOutlet var imageView: UIImageView!
     
+    @IBOutlet var switchButton: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,9 +33,62 @@ class ViewController: UIViewController {
     @IBAction func searchButtonPressed(_ sender: Any) {
         self.view.endEditing(true)
         //self.showWaitingOverlay()
+        
+        if switchButton.isOn{
+            searchFlatIconImage()
+        } else {
+            searchFlickrImage()
+        }
+    }
+    
+    func searchFlatIconImage(){
+        var searchFlaticonURL = ""
+        if let keyWord = inputTextField.text {
+            searchFlaticonURL = "https://www.flaticon.com/search?word=" + keyWord.trimmingCharacters(in: .whitespacesAndNewlines)
+        } else {
+            return
+        }
+        
+        let url = NSURL(string: searchFlaticonURL)
+        
+        if url != nil {
+            let task = URLSession.shared.dataTask(with: url! as URL, completionHandler: { (data, response, error) -> Void in
+                if data != nil {
+                    if error == nil {
+                        if let urlContent = NSString(data: data!, encoding: String.Encoding.ascii.rawValue) as String? {
+                            //print(urlContent)
+                            ////image.flaticon.com/icons/png/128/272/272186.png
+                            let matched = self.matches(for:"(?<=https:\\/\\/image.flaticon.com\\/icons\\/png\\/)[^png]+", in: urlContent)
+                            print(matched[0].count);
+                            if matched[0].count < 40{
+                                let imageURL = "https://image.flaticon.com/icons/png/" + matched[0] + "png"
+                                print(imageURL)
+                                self.getAndShowImage(url: imageURL);
+                            } else{
+                                self.showErrorMessage(text: "No image found")
+                                print("No image found")
+                            }
+                        } else{
+                            self.showErrorMessage(text: "Broken page content")
+                            print("Broken page content")
+                        }
+                    }
+                }else{
+                    self.showErrorMessage(text: "Data fetching issue")
+                    print("Data fetching issue")
+                }
+            })
+            task.resume()
+        } else{
+            self.showErrorMessage(text: "Invalid Keyword")
+            print("Invalid Keyword")
+        }
+    }
+    
+    func searchFlickrImage(){
         var searchFlickrURL = ""
         if let keyWord = inputTextField.text {
-             searchFlickrURL = "https://www.flickr.com/search/?text=" + keyWord.trimmingCharacters(in: .whitespacesAndNewlines) + "&license=2%2C3%2C4%2C5%2C6%2C9"
+            searchFlickrURL = "https://www.flickr.com/search/?text=" + keyWord.trimmingCharacters(in: .whitespacesAndNewlines) + "&license=2%2C3%2C4%2C5%2C6%2C9"
         } else {
             return
         }

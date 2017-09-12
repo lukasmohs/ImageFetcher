@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.19" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.16"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -42,8 +41,17 @@
                                     <action selector="searchButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="P5i-v0-TMk"/>
                                 </connections>
                             </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KuP-a4-Dzi">
+                                <rect key="frame" x="310" y="110" width="51" height="31"/>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search Icons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1IW-7R-FXq">
+                                <rect key="frame" x="16" y="110" width="196" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="r50-Kg-3aq">
-                                <rect key="frame" x="16" y="110" width="343" height="557"/>
+                                <rect key="frame" x="16" y="149" width="343" height="518"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -52,19 +60,25 @@
                             <constraint firstItem="m7i-OQ-ggf" firstAttribute="top" secondItem="hBY-yq-z3E" secondAttribute="bottom" constant="8" id="2zK-BH-WAq"/>
                             <constraint firstItem="hBY-yq-z3E" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="3yP-za-vIk"/>
                             <constraint firstItem="MET-Wc-yUs" firstAttribute="top" secondItem="hBY-yq-z3E" secondAttribute="bottom" constant="8" id="3yQ-LN-eNF"/>
-                            <constraint firstItem="r50-Kg-3aq" firstAttribute="top" secondItem="MET-Wc-yUs" secondAttribute="bottom" constant="8" id="5Rh-aF-CLG"/>
                             <constraint firstItem="MET-Wc-yUs" firstAttribute="width" secondItem="m7i-OQ-ggf" secondAttribute="width" multiplier="0.25" id="7eg-8V-pb5"/>
+                            <constraint firstItem="KuP-a4-Dzi" firstAttribute="width" secondItem="1IW-7R-FXq" secondAttribute="width" multiplier="0.25" id="BLC-Dg-TMD"/>
                             <constraint firstItem="r50-Kg-3aq" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="BQ6-Mu-der"/>
                             <constraint firstItem="MET-Wc-yUs" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="VHW-KV-uCQ"/>
                             <constraint firstItem="r50-Kg-3aq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="c97-GJ-3ok"/>
                             <constraint firstItem="hBY-yq-z3E" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="dQU-Ds-OS7"/>
+                            <constraint firstItem="r50-Kg-3aq" firstAttribute="top" secondItem="KuP-a4-Dzi" secondAttribute="bottom" constant="8" id="jwt-Xx-fwJ"/>
+                            <constraint firstItem="1IW-7R-FXq" firstAttribute="top" secondItem="m7i-OQ-ggf" secondAttribute="bottom" constant="8" id="q78-JO-AjD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="KuP-a4-Dzi" secondAttribute="trailing" id="sjH-ej-krv"/>
+                            <constraint firstItem="1IW-7R-FXq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="vPf-Zc-AD7"/>
                             <constraint firstAttribute="trailing" secondItem="hBY-yq-z3E" secondAttribute="trailing" id="wbK-et-uX1"/>
+                            <constraint firstItem="KuP-a4-Dzi" firstAttribute="top" secondItem="m7i-OQ-ggf" secondAttribute="bottom" constant="8" id="xHL-qF-DGR"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="imageView" destination="r50-Kg-3aq" id="dg2-qo-g8Q"/>
                         <outlet property="inputTextField" destination="m7i-OQ-ggf" id="c8S-SF-zrF"/>
                         <outlet property="searchButton" destination="MET-Wc-yUs" id="giZ-yg-mH0"/>
+                        <outlet property="switchButton" destination="KuP-a4-Dzi" id="78b-iv-eft"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
