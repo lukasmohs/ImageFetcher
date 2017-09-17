@@ -21,7 +21,22 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        inputTextField.text = "Keyword";
+        
+        
+        let userDefults = UserDefaults.standard //returns shared defaults object.
+        
+            
+        if let previousSearchString = userDefults.value(forKey: "previousSearchString") { //Returns the String value associated with the specified key.
+            //do something here when a highscore exists
+            inputTextField.text = previousSearchString as! String;
+            print(previousSearchString)
+        } else {
+            print("no previouse SearchString found...")
+            //no highscore exists
+            
+        }
+        
+        
         
     }
 
@@ -42,8 +57,13 @@ class ViewController: UIViewController {
     }
     
     func searchFlatIconImage(){
+        
+        
         var searchFlaticonURL = ""
         if let keyWord = inputTextField.text {
+            let userDefults = UserDefaults.standard
+            userDefults.set(keyWord, forKey: "previousSearchString") //Sets the value of the specified default key to the specified integer value.
+            
             searchFlaticonURL = "https://www.flaticon.com/search?word=" + keyWord.trimmingCharacters(in: .whitespacesAndNewlines)
         } else {
             return
