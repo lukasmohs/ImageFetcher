@@ -29,15 +29,17 @@ class ViewController: UIViewController {
         if let previousSearchString = userDefults.value(forKey: "previousSearchString") { //Returns the String value associated with the specified key.
             //do something here when a highscore exists
             inputTextField.text = previousSearchString as! String;
-            print(previousSearchString)
+            //print(previousSearchString)
         } else {
-            print("no previouse SearchString found...")
+            //print("no previouse SearchString found...")
             //no highscore exists
             
         }
         
-        
-        
+        var myDict: NSDictionary?
+        if let path = Bundle.main.path(forResource: "myPlist", ofType: "plist"), let myDict = NSDictionary(contentsOfFile: path) {
+            print(myDict)
+        }
     }
 
     override func didReceiveMemoryWarning() {
