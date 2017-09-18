@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		316444341F6F30E5002D871A /* myPlist.plist in Resources */ = {isa = PBXBuildFile; fileRef = 316444331F6F30E5002D871A /* myPlist.plist */; };
+		316444361F6FD977002D871A /* Information.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316444351F6FD977002D871A /* Information.swift */; };
 		317CF8861F6733C800C22555 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317CF8851F6733C800C22555 /* AppDelegate.swift */; };
 		317CF8881F6733C800C22555 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317CF8871F6733C800C22555 /* ViewController.swift */; };
 		317CF88B1F6733C800C22555 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 317CF8891F6733C800C22555 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		316444331F6F30E5002D871A /* myPlist.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = myPlist.plist; sourceTree = "<group>"; };
+		316444351F6FD977002D871A /* Information.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Information.swift; sourceTree = "<group>"; };
 		317CF8821F6733C800C22555 /* ImageFetcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageFetcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		317CF8851F6733C800C22555 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		317CF8871F6733C800C22555 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				317CF88E1F6733C800C22555 /* LaunchScreen.storyboard */,
 				317CF8911F6733C800C22555 /* Info.plist */,
 				316444331F6F30E5002D871A /* myPlist.plist */,
+				316444351F6FD977002D871A /* Information.swift */,
 			);
 			path = ImageFetcher;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				316444361F6FD977002D871A /* Information.swift in Sources */,
 				317CF8881F6733C800C22555 /* ViewController.swift in Sources */,
 				317CF8861F6733C800C22555 /* AppDelegate.swift in Sources */,
 			);

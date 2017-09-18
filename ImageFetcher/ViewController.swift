@@ -22,7 +22,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         
-        
         let userDefults = UserDefaults.standard //returns shared defaults object.
         
             
@@ -40,6 +39,19 @@ class ViewController: UIViewController {
         if let path = Bundle.main.path(forResource: "myPlist", ofType: "plist"), let myDict = NSDictionary(contentsOfFile: path) {
             print(myDict)
         }
+        
+        var filePath: String {
+            let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+            return (url!.appendingPathComponent("Data").path)
+        }
+        var information: [Information] = [Information(title:"Wiesn", details:"O'zapft is"), Information(title:"TUM", details:"all the way up")]
+        // Archive objects
+        NSKeyedArchiver.archiveRootObject(information, toFile: filePath)
+        // Unarchive objects
+        guard let information2 = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? [Information] else {
+            return
+        }
+        information2.forEach{print($0.title + ": " + $0.details)}
     }
 
     override func didReceiveMemoryWarning() {
