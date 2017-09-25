@@ -70,9 +70,25 @@ class ViewController: UIViewController {
         }
     }
     
+    func saveImage(image: UIImage){
+        if let fileDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first,  let data = UIImagePNGRepresentation(image) {
+            let filePath = fileDir.appendingPathComponent("image.png")
+            try? data.write(to: filePath)
+        }
+    }
+    
+    func readImage() -> UIImage? {
+        var image: UIImage? = nil
+        if let fileDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let filePath = fileDir.appendingPathComponent("image.png")
+            if let foundImage    = UIImage(contentsOfFile: filePath.path){
+                image = foundImage
+            }
+        }
+        return image
+    }
+    
     func searchFlatIconImage(){
-        
-        
         var searchFlaticonURL = ""
         if let keyWord = inputTextField.text {
             let userDefults = UserDefaults.standard
@@ -230,7 +246,8 @@ class ViewController: UIViewController {
     }
     
     func setImage(image :UIImage) {
-        self.imageView.image = image
+        saveImage(image: image)
+        self.imageView.image = readImage()
     }
     
     func showErrorMessage(text: String){
