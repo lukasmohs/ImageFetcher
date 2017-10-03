@@ -6,6 +6,11 @@
 //  Copyright © 2017 Lukas Mohs. All rights reserved.
 //
 
+
+
+
+
+
 import UIKit
 
 class ViewController: UIViewController {
@@ -44,7 +49,7 @@ class ViewController: UIViewController {
             let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
             return (url!.appendingPathComponent("Data").path)
         }
-        var information: [Information] = [Information(title:"Wiesn", details:"O'zapft is"), Information(title:"TUM", details:"all the way up")]
+        var information: [Information] = [Information(title:"Wiesn", details:"O'zapft is", id:1,date: Date()), Information(title:"TUM", details:"all the way up",id:2,date: Date())]
         // Archive objects
         NSKeyedArchiver.archiveRootObject(information, toFile: filePath)
         // Unarchive objects
